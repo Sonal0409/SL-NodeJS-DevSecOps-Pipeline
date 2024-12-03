@@ -38,7 +38,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     - uses: aquasecurity/trivy-action@0.28.0
       with:
-          image-ref: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          image-ref: 767397832888.dkr.ecr.us-east-1.amazonaws.com/cep/ecrrepo:latest
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
