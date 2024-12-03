@@ -32,13 +32,13 @@ jobs:
       env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: cep/ecrrepo
-          IMAGE_TAG: imagenode01:latest
+          IMAGE_TAG: latest
       run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
     - uses: aquasecurity/trivy-action@0.28.0
       with:
-          image-ref: 'imagenode01:latest'
+          image-ref: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
